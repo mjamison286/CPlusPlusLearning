@@ -9,7 +9,7 @@ double Calc (double num1, double num2, int operation)
         case 3: 
             return num1 * num2;
         case 4: 
-            return num1/num2;
+            return num1 / num2;
     }
 
     return -1;
