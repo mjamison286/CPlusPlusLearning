@@ -33,3 +33,4 @@
 
 #Extra
 *.clangd
+CMakePresets.json
