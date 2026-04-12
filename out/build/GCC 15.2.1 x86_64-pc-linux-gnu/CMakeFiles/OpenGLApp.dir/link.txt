@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -Wl,--dependency-file=CMakeFiles/OpenGLApp.dir/link.d CMakeFiles/OpenGLApp.dir/source/OpenGLApp.cpp.o -o OpenGLApp  -lGL /usr/lib/libglfw.so.3.4 -lGLEW -lGL -lGLEW

@@ -117,137 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named FirstProgram
+# Target rules for targets named OpenGLApp
 
 # Build rule for target.
-FirstProgram: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FirstProgram
-.PHONY : FirstProgram
+OpenGLApp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 OpenGLApp
+.PHONY : OpenGLApp
 
 # fast build rule for target.
-FirstProgram/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/build
-.PHONY : FirstProgram/fast
+OpenGLApp/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLApp.dir/build.make CMakeFiles/OpenGLApp.dir/build
+.PHONY : OpenGLApp/fast
 
-source/Calc.o: source/Calc.cpp.o
-.PHONY : source/Calc.o
-
-# target to build an object file
-source/Calc.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Calc.cpp.o
-.PHONY : source/Calc.cpp.o
-
-source/Calc.i: source/Calc.cpp.i
-.PHONY : source/Calc.i
-
-# target to preprocess a source file
-source/Calc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Calc.cpp.i
-.PHONY : source/Calc.cpp.i
-
-source/Calc.s: source/Calc.cpp.s
-.PHONY : source/Calc.s
-
-# target to generate assembly for a file
-source/Calc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Calc.cpp.s
-.PHONY : source/Calc.cpp.s
-
-source/FirstProgram.o: source/FirstProgram.cpp.o
-.PHONY : source/FirstProgram.o
+source/OpenGLApp.o: source/OpenGLApp.cpp.o
+.PHONY : source/OpenGLApp.o
 
 # target to build an object file
-source/FirstProgram.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/FirstProgram.cpp.o
-.PHONY : source/FirstProgram.cpp.o
+source/OpenGLApp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLApp.dir/build.make CMakeFiles/OpenGLApp.dir/source/OpenGLApp.cpp.o
+.PHONY : source/OpenGLApp.cpp.o
 
-source/FirstProgram.i: source/FirstProgram.cpp.i
-.PHONY : source/FirstProgram.i
-
-# target to preprocess a source file
-source/FirstProgram.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/FirstProgram.cpp.i
-.PHONY : source/FirstProgram.cpp.i
-
-source/FirstProgram.s: source/FirstProgram.cpp.s
-.PHONY : source/FirstProgram.s
-
-# target to generate assembly for a file
-source/FirstProgram.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/FirstProgram.cpp.s
-.PHONY : source/FirstProgram.cpp.s
-
-source/Log.o: source/Log.cpp.o
-.PHONY : source/Log.o
-
-# target to build an object file
-source/Log.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Log.cpp.o
-.PHONY : source/Log.cpp.o
-
-source/Log.i: source/Log.cpp.i
-.PHONY : source/Log.i
+source/OpenGLApp.i: source/OpenGLApp.cpp.i
+.PHONY : source/OpenGLApp.i
 
 # target to preprocess a source file
-source/Log.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Log.cpp.i
-.PHONY : source/Log.cpp.i
+source/OpenGLApp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLApp.dir/build.make CMakeFiles/OpenGLApp.dir/source/OpenGLApp.cpp.i
+.PHONY : source/OpenGLApp.cpp.i
 
-source/Log.s: source/Log.cpp.s
-.PHONY : source/Log.s
-
-# target to generate assembly for a file
-source/Log.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Log.cpp.s
-.PHONY : source/Log.cpp.s
-
-source/Query.o: source/Query.cpp.o
-.PHONY : source/Query.o
-
-# target to build an object file
-source/Query.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Query.cpp.o
-.PHONY : source/Query.cpp.o
-
-source/Query.i: source/Query.cpp.i
-.PHONY : source/Query.i
-
-# target to preprocess a source file
-source/Query.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Query.cpp.i
-.PHONY : source/Query.cpp.i
-
-source/Query.s: source/Query.cpp.s
-.PHONY : source/Query.s
+source/OpenGLApp.s: source/OpenGLApp.cpp.s
+.PHONY : source/OpenGLApp.s
 
 # target to generate assembly for a file
-source/Query.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/Query.cpp.s
-.PHONY : source/Query.cpp.s
-
-source/QueryAndPrint.o: source/QueryAndPrint.cpp.o
-.PHONY : source/QueryAndPrint.o
-
-# target to build an object file
-source/QueryAndPrint.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/QueryAndPrint.cpp.o
-.PHONY : source/QueryAndPrint.cpp.o
-
-source/QueryAndPrint.i: source/QueryAndPrint.cpp.i
-.PHONY : source/QueryAndPrint.i
-
-# target to preprocess a source file
-source/QueryAndPrint.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/QueryAndPrint.cpp.i
-.PHONY : source/QueryAndPrint.cpp.i
-
-source/QueryAndPrint.s: source/QueryAndPrint.cpp.s
-.PHONY : source/QueryAndPrint.s
-
-# target to generate assembly for a file
-source/QueryAndPrint.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FirstProgram.dir/build.make CMakeFiles/FirstProgram.dir/source/QueryAndPrint.cpp.s
-.PHONY : source/QueryAndPrint.cpp.s
+source/OpenGLApp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/OpenGLApp.dir/build.make CMakeFiles/OpenGLApp.dir/source/OpenGLApp.cpp.s
+.PHONY : source/OpenGLApp.cpp.s
 
 # Help Target
 help:
@@ -257,22 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... FirstProgram"
-	@echo "... source/Calc.o"
-	@echo "... source/Calc.i"
-	@echo "... source/Calc.s"
-	@echo "... source/FirstProgram.o"
-	@echo "... source/FirstProgram.i"
-	@echo "... source/FirstProgram.s"
-	@echo "... source/Log.o"
-	@echo "... source/Log.i"
-	@echo "... source/Log.s"
-	@echo "... source/Query.o"
-	@echo "... source/Query.i"
-	@echo "... source/Query.s"
-	@echo "... source/QueryAndPrint.o"
-	@echo "... source/QueryAndPrint.i"
-	@echo "... source/QueryAndPrint.s"
+	@echo "... OpenGLApp"
+	@echo "... source/OpenGLApp.o"
+	@echo "... source/OpenGLApp.i"
+	@echo "... source/OpenGLApp.s"
 .PHONY : help
 
 
