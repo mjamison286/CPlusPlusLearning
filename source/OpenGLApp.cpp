@@ -1,5 +1,5 @@
 #define GLEW_STATIC
-#include </usr/include/GL/glew.h>
+#include "include/glad/glad.h"
 #include </usr/include/GLFW/glfw3.h>
 #include <GL/gl.h>
 #include <cstddef>
@@ -30,6 +30,7 @@ int main(void)
     }
 
     glfwMakeContextCurrent(window);
+    gladLoadGL();
 
     glfwSetKeyCallback(window, keyCallback);
 
