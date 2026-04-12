@@ -34,3 +34,5 @@
 #Extra
 *.clangd
 CMakePresets.json
+/out
+/.vscode
