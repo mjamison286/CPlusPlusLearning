@@ -7,7 +7,7 @@ find_package(glfw3 REQUIRED)
 
 #add_executable(FirstProgram source/FirstProgram.cpp source/Log.cpp source/QueryAndPrint.cpp source/Query.cpp source/Calc.cpp)
 
-add_executable(OpenGLApp source/OpenGLApp.cpp source/glad.c)
+add_executable(OpenGLApp source/OpenGLApp.cpp source/glad.c source/VertexBuffer.cpp source/IndexBuffer.cpp source/Renderer.cpp source/VertexArray.cpp)
 
 target_link_libraries(OpenGLApp GL glfw GL)
 
