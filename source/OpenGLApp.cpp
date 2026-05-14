@@ -50,8 +50,10 @@ int main(void)
     {
         float positions[] = 
         {
-            -0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, 
-            -0.5f, 0.5f
+            -0.5f, -0.5f, //lower left corner
+            0.5f, -0.5f, //lower right corner
+            0.5f, 0.5f, //upper right corner
+            -0.5f, 0.5f //upper left corner
             
         };
 
@@ -61,9 +63,21 @@ int main(void)
             2, 3, 0
         };
 
+        float texCoords [] =
+        {
+            0.0f, 0.0f, 
+            1.0f, 0.0f, 
+            1.0f, 1.0f, 
+            0.0f, 1.0f
+        };
+
+
         VertexArray va;
+
+        //vertex data specifying the physical position of each vertex denoted by the vertex index listed in indices[]
         VertexBuffer vb(positions, 4 * 2 * sizeof(float));
 
+        //vertex buffer layout specifying where data kept in a specific vertex buffer is kept (this one is the first index in the layout, position in specific) 
         VertexBufferLayout layout;
         layout.Push<float>(2);
         va.AddBuffer(vb, layout);
