@@ -6,7 +6,7 @@
 #include "VertexBufferLayout.h"
 #include "Shader.h"
 
-#include </usr/include/GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 #include <GL/gl.h>
 #include <cstddef>
 
@@ -62,7 +62,7 @@ int main(void)
             0, 1, 2, 
             2, 3, 0
         };
-
+        
         float texCoords [] =
         {
             0.0f, 0.0f, 
@@ -70,6 +70,7 @@ int main(void)
             1.0f, 1.0f, 
             0.0f, 1.0f
         };
+        
 
 
         VertexArray va;
@@ -87,7 +88,7 @@ int main(void)
 
         IndexBuffer ib(indices, 6);
 
-        Shader shader("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/shaders/Basic.shader");
+        Shader shader("../source/shaders/Basic.shader");
         shader.Bind();
         shader.SetUniform4f("u_Color", 0.0f, 0.0f, 1.0f, 1.0f);
 
