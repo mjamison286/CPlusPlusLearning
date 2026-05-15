@@ -4,14 +4,15 @@ project(CPlusPlus VERSION 0.1.0 LANGUAGES C CXX)
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
 include_directories(
-    #vendor/glfw/include
+    vendor/glfw/include
+    vendor/glm
     source/include
     source/resources
 )
 
-#add_subdirectory(vendor/glfw glfw)
+add_subdirectory(vendor/glfw glfw)
 
-find_package(glfw3 REQUIRED)
+#find_package(glfw3 REQUIRED)
 
 #add_executable(FirstProgram source/FirstProgram.cpp source/Log.cpp source/QueryAndPrint.cpp source/Query.cpp source/Calc.cpp)
 

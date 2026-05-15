@@ -7,10 +7,7 @@
 Texture::Texture(const std::string& filepath)
 {
     int width, height, nrChannels;
-    unsigned char *data = stbi_load((const char*) &filepath, &width, &height, &nrChannels, 0);
-
-    std::cout << "this is the data: " << data << std::endl;
-
+    unsigned char *data = stbi_load(filepath.c_str(), &width, &height, &nrChannels, 0);
     if(data)
     {
         std::cout << "loaded texture successfully" << std::endl;

@@ -9,7 +9,15 @@
 
 #include "GLFW/glfw3.h"
 #include <GL/gl.h>
+#include <algorithm>
 #include <cstddef>
+
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "include/stb/stb_image.h"
 
 static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -80,12 +88,14 @@ int main(void)
 
         IndexBuffer ib(indices, 6);
 
-        Texture texture("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/textures/container.jpg");
+        //Texture texture("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/textures/container.jpg");
+        Texture texture("C:/Users/thego/Documents/Code/CPlusPlusLearning/source/resources/textures/container.jpg");
 
-        Shader shader("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/shaders/Basic.shader");
+        //Shader shader("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/shaders/Basic.shader");
+        Shader shader("C:/Users/thego/Documents/Code/CPlusPlusLearning/source/resources/shaders/Basic.shader");
         shader.Bind();
-        shader.SetUniform4f("u_Color", 0.0f, 0.0f, 1.0f, 1.0f);
-        shader.SetUniform1i("texture", 0);
+        //shader.SetUniform4f("u_Color", 0.0f, 0.0f, 1.0f, 1.0f);
+        //shader.SetUniform1i("texture", 0);
 
         va.Unbind();
         vb.Unbind();
@@ -102,7 +112,12 @@ int main(void)
             GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
             shader.Bind();
-            shader.SetUniform4f("u_Color", r, 0.5, 0.5, 1.0);
+            //shader.SetUniform4f("u_Color", r, 0.5, 0.5, 1.0);
+
+            glm::mat4 trans = glm::mat4(1.0f);
+            trans = glm::rotate(trans, (float)(glfwGetTime() * glfwGetTime()), glm::vec3(0.0f, 0.0f, 1.0f));
+            
+            shader.SetUniformMat4fv("transform", trans);
 
             renderer.Draw(va, ib, shader);
 
@@ -114,6 +129,7 @@ int main(void)
             {
                 rincrement = 0.005f;
             }
+
 
             r += rincrement;
 
