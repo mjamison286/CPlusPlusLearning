@@ -5,11 +5,14 @@
 #include "VertexArray.h"
 #include "VertexBufferLayout.h"
 #include "Shader.h"
+#include "Texture.h"
 
 #include "GLFW/glfw3.h"
 #include <GL/gl.h>
 #include <cstddef>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "include/stb/stb_image.h"
 
 static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -48,12 +51,12 @@ int main(void)
 
     glfwShowWindow(window);
     {
-        float positions[] = 
+        float vertexData[] = 
         {
-            -0.5f, -0.5f, //lower left corner
-            0.5f, -0.5f, //lower right corner
-            0.5f, 0.5f, //upper right corner
-            -0.5f, 0.5f //upper left corner
+            -0.5f, -0.5f,       0.0f, 0.0f, //lower left corner
+            0.5f, -0.5f,        1.0f, 0.0f, //lower right corner
+            0.5f, 0.5f,         1.0f, 1.0f, //upper right corner
+            -0.5f, 0.5f,      0.0f, 1.0f  //upper left corner
             
         };
 
@@ -63,34 +66,29 @@ int main(void)
             2, 3, 0
         };
         
-        float texCoords [] =
-        {
-            0.0f, 0.0f, 
-            1.0f, 0.0f, 
-            1.0f, 1.0f, 
-            0.0f, 1.0f
-        };
         
-
+        VertexBufferLayout layout;
 
         VertexArray va;
 
-        //vertex data specifying the physical position of each vertex denoted by the vertex index listed in indices[]
-        VertexBuffer vb(positions, 4 * 2 * sizeof(float));
-
-        //vertex buffer layout specifying where data kept in a specific vertex buffer is kept (this one is the first index in the layout, position in specific) 
-        VertexBufferLayout layout;
-        layout.Push<float>(2);
+        VertexBuffer vb(vertexData, 8 * 2 * sizeof(float));
+        //layout.Push<float>(2);
         va.AddBuffer(vb, layout);
 
         GLCall(glEnableVertexAttribArray(0));
-        GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+        GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0));
+
+        GLCall(glEnableVertexAttribArray(1));
+        GLCall(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 4, (void*)(2 * sizeof(float))));
 
         IndexBuffer ib(indices, 6);
 
-        Shader shader("../source/shaders/Basic.shader");
+        Texture texture("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/textures/container.jpg");
+
+        Shader shader("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/shaders/Basic.shader");
         shader.Bind();
         shader.SetUniform4f("u_Color", 0.0f, 0.0f, 1.0f, 1.0f);
+        shader.SetUniform1i("texture", 0);
 
         va.Unbind();
         vb.Unbind();
