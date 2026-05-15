@@ -11,9 +11,6 @@
 #include <GL/gl.h>
 #include <cstddef>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "include/stb/stb_image.h"
-
 static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
