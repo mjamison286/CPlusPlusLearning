@@ -33,3 +33,7 @@
 
 #Extra
 *.clangd
+CMakePresets.json
+/out/build/
+/.vscode/
+/build/
