@@ -115,7 +115,7 @@ int main(void)
             //shader.SetUniform4f("u_Color", r, 0.5, 0.5, 1.0);
 
             glm::mat4 trans = glm::mat4(1.0f);
-            trans = glm::rotate(trans, (float)(glfwGetTime() * glfwGetTime()), glm::vec3(0.0f, 0.0f, 1.0f));
+            trans = glm::rotate(trans, (float)(glfwGetTime()), glm::vec3(0.0f, 0.0f, 1.0f));
             
             shader.SetUniformMat4fv("transform", trans);
 
