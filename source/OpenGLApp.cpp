@@ -88,13 +88,13 @@ int main(void)
 
         IndexBuffer ib(indices, 6);
 
-        //Texture texture("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/textures/container.jpg");
+        Texture texture("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/textures/container.jpg");
         //Texture texture("C:/Users/thego/Documents/Code/CPlusPlusLearning/source/resources/textures/container.jpg");
-        Texture texture("/home/clysmatica/Storage/Repositories/CPlusPlusLearning/source/resources/textures/container.jpg");
+        //Texture texture("/home/clysmatica/Storage/Repositories/CPlusPlusLearning/source/resources/textures/container.jpg");
 
-        //Shader shader("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/shaders/Basic.shader");
+        Shader shader("/mnt/DATA1/Coding/CPlusPlusLearning/source/resources/shaders/Basic.shader");
         //Shader shader("C:/Users/thego/Documents/Code/CPlusPlusLearning/source/resources/shaders/Basic.shader");
-        Shader shader("/home/clysmatica/Storage/Repositories/CPlusPlusLearning/source/resources/shaders/Basic.shader");
+        //Shader shader("/home/clysmatica/Storage/Repositories/CPlusPlusLearning/source/resources/shaders/Basic.shader");
 
         shader.Bind();
         //shader.SetUniform4f("u_Color", 0.0f, 0.0f, 1.0f, 1.0f);
