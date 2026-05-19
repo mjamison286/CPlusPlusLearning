@@ -32,7 +32,7 @@ add_executable(OpenGLApp
 target_link_libraries(OpenGLApp glfw)
 
 target_compile_definitions(OpenGLApp PRIVATE
-    RESOURCE_PATH="../source/resources/"
+    RESOURCE_PATH="${CMAKE_SOURCE_DIR}/source/resources/"
 )
 
 #target_link_libraries(OpenGLApp GL glfw)
