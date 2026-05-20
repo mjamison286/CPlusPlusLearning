@@ -31,6 +31,9 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
 
 int main(void)
 {
+    int width = 1280;
+    int height = 720;
+
     GLFWwindow* window;
 
     if(!glfwInit())
@@ -42,7 +45,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(640, 480, "first opengl window", NULL, NULL);
+    window = glfwCreateWindow(width, height, "first opengl window", NULL, NULL);
 
     if(!window)
     {
@@ -103,6 +106,7 @@ int main(void)
         ib.Unbind();
         shader.Unbind();
 
+        glm::mat4 proj = glm::perspective(glm::radians(45.0f), (float) width / (float) height, 0.1f, 1000.0f);
         Renderer renderer;
 
         float r = 0.0f;
