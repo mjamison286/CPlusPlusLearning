@@ -1,3 +1,5 @@
+#include "glm/detail/type_mat.hpp"
+#include "glm/detail/type_vec.hpp"
 #include "include/glad/glad.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"
@@ -63,17 +65,63 @@ int main(void)
     {
         float vertexData[] = 
         {
-            -0.5f, -0.5f,       0.0f, 0.0f, //lower left corner
-            0.5f, -0.5f,        1.0f, 0.0f, //lower right corner
-            0.5f, 0.5f,         1.0f, 1.0f, //upper right corner
-            -0.5f, 0.5f,      0.0f, 1.0f  //upper left corner
+            //front face
+            -0.5f, -0.5f, -0.5f,      0.0f, 0.0f, //lower left corner
+            0.5f, -0.5f, -0.5f,       1.0f, 0.0f, //lower right corner
+            0.5f, 0.5f, -0.5f,        1.0f, 1.0f, //upper right corner 
+            -0.5f, 0.5f, -0.5f,     0.0f, 1.0f,  //upper left corner 
+
+            //left face
+            -0.5f, -0.5f, -0.5f,     0.0f, 0.0f, //lower left corner
+            -0.5f, -0.5f, 0.5f,     1.0f, 0.0f, //lower right corner
+            -0.5f, 0.5f, 0.5f,     1.0f, 1.0f, //upper right corner
+            -0.5f, 0.5f, -0.5f,     0.0f, 1.0f, //upper left corner
+
+            //right face 
+            0.5f, -0.5f, 0.5f,     0.0f, 0.0f, //lower left corner
+            0.5f, -0.5f, -0.5f,     1.0f, 0.0f, //lower right corner
+            0.5f, 0.5f, -0.5f,      1.0f, 1.0f, //upper right corner
+            0.5f, 0.5f, 0.5f,       0.0f, 1.0f, //upper left corner
+
+            //back face
+            0.5f, -0.5f, 0.5f,      0.0f, 0.0f, //lower left corner
+            -0.5f, -0.5f, 0.5f,       1.0f, 0.0f, //lower right corner
+            -0.5f, 0.5f, 0.5f,        1.0f, 1.0f, //upper right corner 
+            0.5f, 0.5f, 0.5f,     0.0f, 1.0f,  //upper left corner 
             
+            //top face
+            -0.5, 0.5f, -0.5f,      0.0f, 0.0f, //lower left corner
+            0.5f, 0.5f, -0.5f,      1.0f, 0.0f, //lower right corner
+            0.5f, 0.5f, 0.5f,       1.0f, 1.0f, //upper right corner
+            -0.5f, 0.5f, 0.5f,      0.0f, 1.0f, //upper left corner
+
+            //bottom face
+            -0.5f, -0.5f, -0.5f,     0.0f, 0.0f, //lower left corner
+            0.5f, -0.5f, -0.5f,     1.0f, 0.0f, //lower right corner
+            0.5f, -0.5f, 0.5f,      1.0f, 1.0f, //upper right corner
+            -0.5f, -0.5f, 0.5f,     0.0f, 1.0f //upper left corner
+
         };
 
         unsigned int indices[] = 
         {
             0, 1, 2, 
-            2, 3, 0
+            2, 3, 0,
+
+            4, 5, 6, 
+            6, 7, 4,
+
+            8, 9, 10, 
+            10, 11, 8,
+
+            12, 13, 14,
+            14, 15, 12,
+
+            16, 17, 18, 
+            18, 19, 16,
+
+            20, 21, 22,
+            22, 23, 20
         };
         
         
@@ -81,17 +129,16 @@ int main(void)
 
         VertexArray va;
 
-        VertexBuffer vb(vertexData, 8 * 2 * sizeof(float));
-        //layout.Push<float>(2);
+        VertexBuffer vb(vertexData, 24 * 5 * sizeof(float));
         va.AddBuffer(vb, layout);
 
         GLCall(glEnableVertexAttribArray(0));
-        GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0));
+        GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, 0));
 
         GLCall(glEnableVertexAttribArray(1));
-        GLCall(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 4, (void*)(2 * sizeof(float))));
+        GLCall(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)(3 * sizeof(float))));
 
-        IndexBuffer ib(indices, 6);
+        IndexBuffer ib(indices, 36);
 
         Texture texture(std::string(RESOURCE_PATH) + "textures/container.jpg");
 
@@ -107,23 +154,60 @@ int main(void)
         shader.Unbind();
 
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), (float) width / (float) height, 0.1f, 1000.0f);
+
+        //glm::mat4 model = glm::mat4(1);
+        glm::mat4 view = glm::mat4(1);
+        //model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
         Renderer renderer;
 
         float r = 0.0f;
         float rincrement = 0.005f;
 
+        GLCall(glEnable(GL_DEPTH_TEST));
+
+        glm::vec3 cubePositions[] 
+        {
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            glm::vec3(1.5f, 2.0f, -2.0f),
+            glm::vec3(-1.5f, -1.0f, -2.0f)
+        };
+
+        glm::vec3 cubeRotations[]
+        {
+            glm::vec3(1.0f, 0.5f, 0.0f),
+            glm::vec3(-0.5f, 1.0f, 0.5f),
+            glm::vec3(-1.0f, 0.0f, -0.5f)
+        };
+
         while(!glfwWindowShouldClose(window))
         {
-            GLCall(glClear(GL_COLOR_BUFFER_BIT));
+            GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
             shader.Bind();
             //shader.SetUniform4f("u_Color", r, 0.5, 0.5, 1.0);
 
-            glm::mat4 trans = glm::mat4(1.0f);
-            
-            shader.SetUniformMat4fv("transform", trans);
+            shader.SetUniformMat4fv("view", view);
+            shader.SetUniformMat4fv("projection", proj);
 
-            renderer.Draw(va, ib, shader);
+            glm::mat4 model;
+
+            for(int i = 0; i < cubePositions->length(); i++)
+            {
+                model = glm::mat4(1.0);
+                model = glm::translate(model, cubePositions[i]);
+                model = glm::rotate(model, (float) glfwGetTime() * glm::radians(50.0f), cubeRotations[i]);
+                
+                shader.SetUniformMat4fv("model", model);
+                renderer.Draw(va, ib, shader);
+            }
+            
+            //shader.SetUniformMat4fv("model", model);
+            //shader.SetUniformMat4fv("view", view);
+            //shader.SetUniformMat4fv("projection", proj);
+
+            //renderer.Draw(va, ib, shader);
 
             if(r > 1.0f)
             {
@@ -136,6 +220,8 @@ int main(void)
 
 
             r += rincrement;
+
+            //model = glm::rotate(model, glm::radians(1.0f), glm::vec3(0.5f, 1.0f, 0.0f));
 
             glfwSwapBuffers(window);
 
