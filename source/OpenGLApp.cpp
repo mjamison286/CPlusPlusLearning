@@ -1,5 +1,3 @@
-#include "glm/detail/type_mat.hpp"
-#include "glm/detail/type_vec.hpp"
 #include "include/glad/glad.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"
@@ -22,14 +20,6 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "include/stb/stb_image.h"
-
-static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-    if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-    {
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
-    }
-}
 
 int main(void)
 {
@@ -153,12 +143,26 @@ int main(void)
         ib.Unbind();
         shader.Unbind();
 
+        glm::vec3 cameraPosition = glm::vec3(0.0f, 0.0f, 3.0f);
+        glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+
+        glm::vec3 cameraDirection = glm::normalize(cameraPosition + cameraFront);
+
+        glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+        glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
+
+        glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
+
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), (float) width / (float) height, 0.1f, 1000.0f);
 
+        /*
         //glm::mat4 model = glm::mat4(1);
         glm::mat4 view = glm::mat4(1);
         //model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
         view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+        */
+
+
 
         Renderer renderer;
 
@@ -169,6 +173,7 @@ int main(void)
 
         glm::vec3 cubePositions[] 
         {
+            glm::vec3(1.0f, -1.5f, 2.0f),
             glm::vec3(0.0f, 0.0f, 0.0f),
             glm::vec3(1.5f, 2.0f, -2.0f),
             glm::vec3(-1.5f, -1.0f, -2.0f)
@@ -176,6 +181,7 @@ int main(void)
 
         glm::vec3 cubeRotations[]
         {
+            glm::vec3(2.0f, -0.5f, 0.0f),
             glm::vec3(1.0f, 0.5f, 0.0f),
             glm::vec3(-0.5f, 1.0f, 0.5f),
             glm::vec3(-1.0f, 0.0f, -0.5f)
@@ -185,6 +191,9 @@ int main(void)
         {
             GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
+            glm::mat4 view;
+            view = glm::lookAt(cameraPosition, cameraPosition + cameraFront, cameraUp);
+
             shader.Bind();
             //shader.SetUniform4f("u_Color", r, 0.5, 0.5, 1.0);
 
@@ -192,8 +201,8 @@ int main(void)
             shader.SetUniformMat4fv("projection", proj);
 
             glm::mat4 model;
-
-            for(int i = 0; i < cubePositions->length(); i++)
+            
+            for(int i = 0; i < sizeof(cubePositions)/sizeof(cubePositions[0]); i++)
             {
                 model = glm::mat4(1.0);
                 model = glm::translate(model, cubePositions[i]);
@@ -235,4 +244,32 @@ int main(void)
     glfwTerminate();
 
     return 0;
+}
+
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
+    }
+
+    if(key == GLFW_KEY_W && action == GLFW_PRESS)
+    {
+        cameraPosition
+    }
+
+    if(key == GLFW_KEY_A && action == GLFW_PRESS)
+    {
+        moveVector = glm::vec3(-1.0f, 0.0f, 0.0f);
+    }
+
+    if(key == GLFW_KEY_S && action == GLFW_PRESS)
+    {
+        moveVector = glm::vec3(1.0f, 0.0f, 0.0f);
+    }
+
+    if(key == GLFW_KEY_D && action == GLFW_PRESS)
+    {
+        moveVector = glm::vec3(0.0f, 0.0f, 1.0f);
+    }
 }
